@@ -1,2 +1,7 @@
+# build
 /target
 .idea
+
+# config files
+docker-compose.yml
+.env

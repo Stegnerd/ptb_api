@@ -12,5 +12,8 @@ fn ping() -> &'static str {
 
 #[launch]
 fn rocket() -> _ {
-    rocket::build().mount("/", routes![index, ping])
+    println!("starting up the api");
+
+    rocket::build()
+        .mount("/", routes![index, ping])
 }
