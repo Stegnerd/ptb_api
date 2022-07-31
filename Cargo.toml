@@ -6,6 +6,17 @@ edition = "2021"
 # See more keys and their definitions at https://doc.rust-lang.org/cargo/reference/manifest.html
 
 [dependencies]
-rocket = "0.5.0-rc.2"
+# used to aggregrate config files
+config = {version = "0.13.1", default-features = false, features = ["yaml"]}
+# db orm
 diesel = {version = "1.4.4", features=["postgres"]}
+# todo might be able to delete this
 dotenv = "0.15.0"
+# api framework
+rocket = "0.5.0-rc.2"
+# used to mark model fields that are considered sensitive
+secrecy = { version = "0.8.0", features = ["serde"]}
+# serialization and deserialization
+serde = { version = "1.0.140", features= ["derive"]}
+# extra utils for serde
+serde-aux = "3.1.0"

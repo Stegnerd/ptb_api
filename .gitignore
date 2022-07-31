@@ -5,3 +5,4 @@
 # config files
 docker-compose.yml
 .env
+configuration/local.yml
