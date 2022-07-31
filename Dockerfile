@@ -17,7 +17,6 @@ RUN cargo chef cook --release --recipe-path recipe.json
 # Up to this point, if our dependency tree stays the same,
 # all layers should be cached.
 COPY . .
-
 # Build our project
 RUN cargo build --release --bin ptb_api
 
@@ -27,14 +26,15 @@ RUN cargo build --release --bin ptb_api
 FROM debian:bullseye-slim AS runtime
 EXPOSE 8000
 WORKDIR app
-
+# needed for diesel
+RUN apt-get update && apt-get install libpq5 -y
 # Copy the compiled binary from the builder environment
 # to our runtime environment
 COPY --from=builder /app/target/release/ptb_api /usr/local/bin
 
 # We need the configuration file at runtime!
 COPY Rocket.toml Rocket.toml
-
+COPY configuration configuration
 # to trigger app as prod uncomment this
 # ENV APP_ENVIRONMENT production
 
