@@ -8,7 +8,7 @@ extern crate dotenv;
  use diesel::{QueryDsl, RunQueryDsl};
 use diesel_migrations::{embed_migrations};
 use ptb_api::configuration::get_configuration;
-use ptb_api::models::User;
+use ptb_api::models::user::User;
 use ptb_api::schema::users::dsl::users;
 
 // creates module for referencing migrations so you can put them in your binary
