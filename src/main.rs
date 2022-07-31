@@ -5,9 +5,9 @@ extern crate dotenv;
 #[macro_use]
 extern crate diesel_migrations;
 
-use diesel_migrations::{embed_migrations};
-use diesel::{ QueryDsl, RunQueryDsl};
-use ptb_api::configuration::{get_configuration};
+use diesel::{QueryDsl, RunQueryDsl};
+use diesel_migrations::embed_migrations;
+use ptb_api::configuration::get_configuration;
 use ptb_api::models::User;
 use ptb_api::schema::users::dsl::users;
 
@@ -34,7 +34,6 @@ fn rocket() -> _ {
     // This will run the necessary migrations.
     let answer = embedded_migrations::run(connection);
 
-
     //run_migrations(configuration);
     let results = users
         .limit(5)
@@ -43,6 +42,5 @@ fn rocket() -> _ {
 
     println!("Displaying {} users", results.len());
 
-    rocket::build()
-        .mount("/", routes![index, ping])
+    rocket::build().mount("/", routes![index, ping])
 }
