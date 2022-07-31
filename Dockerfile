@@ -35,6 +35,8 @@ COPY --from=builder /app/target/release/ptb_api /usr/local/bin
 # We need the configuration file at runtime!
 COPY Rocket.toml Rocket.toml
 
+# to trigger app as prod uncomment this
+# ENV APP_ENVIRONMENT production
 
 # this is what to execute
 ENTRYPOINT ["/usr/local/bin/ptb_api"]

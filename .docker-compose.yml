@@ -1,0 +1,48 @@
+version: "3.8"
+
+services:
+  db:
+    image: "postgres:14.4-alpine"
+    volumes:
+      - "dbdata:/var/lib/postgresql/data"
+    ports:
+      # host:container
+      - "5480:5432"
+    expose:
+      - 5480
+    environment:
+      POSTGRES_USER: "fill this in"
+      POSTGRES_PASSWORD: "fill this in"
+      POSTGRES_DB: "default db name"
+    networks:
+      apipostgres:
+
+  pgadmin:
+    image: "dpage/pgadmin4:6.12"
+    depends_on:
+      - db
+    environment:
+      PGADMIN_DEFAULT_EMAIL: fillthisin@email.com
+      PGADMIN_DEFAULT_PASSWORD: make your own pw
+    ports:
+      - "5021:80"
+    networks:
+      apipostgres:
+
+  # env files here for the actual app
+#  api:
+#    build:
+#      context: ./
+#      dockerfile: Dockerfile
+#    depends_on:
+#      - db
+#    ports:
+#      - "5031:8000"
+#    networks:
+#      apipostgres:
+
+volumes:
+  dbdata:
+
+networks:
+  apipostgres:
