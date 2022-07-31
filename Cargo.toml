@@ -10,6 +10,8 @@ edition = "2021"
 config = {version = "0.13.1", default-features = false, features = ["yaml"]}
 # db orm
 diesel = {version = "1.4.4", features=["postgres"]}
+# migration runner
+diesel_migrations = "1.4.0"
 # todo might be able to delete this
 dotenv = "0.15.0"
 # api framework
