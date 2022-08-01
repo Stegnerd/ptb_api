@@ -1,11 +1,9 @@
 #[macro_use]
 extern crate rocket;
-extern crate diesel;
-extern crate dotenv;
  #[macro_use]
  extern crate diesel_migrations;
 
- use diesel::{QueryDsl, RunQueryDsl};
+use diesel::{QueryDsl, RunQueryDsl};
 use diesel_migrations::{embed_migrations};
 use ptb_api::configuration::get_configuration;
 use ptb_api::models::user::User;
